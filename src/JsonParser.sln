@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParser.Silverlight", "J
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParser.WindowsPhone", "JsonParser.WindowsPhone\JsonParser.WindowsPhone.csproj", "{D08974FB-9902-413D-BD09-B5B3A5C95328}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5611F17D-31A9-47C5-84EE-5B6F7EED1058}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,8 +34,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{278BCB67-97BF-4836-935D-4083CDC92F8D} = {5611F17D-31A9-47C5-84EE-5B6F7EED1058}
 	EndGlobalSection
 EndGlobal
