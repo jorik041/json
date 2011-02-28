@@ -206,5 +206,41 @@ namespace JsonParser.Tests
             
             Assert.AreEqual(expected, actual.Value);
         }
+
+#if NET40
+        [Test]
+        public void Can_deserialize_simple_dynamic_object()
+        {
+            const string expected = @"{""array"":{""quantity"":8902,""cost"":45.33,""value"":-0.01063}}";
+            var instance = JsonParser.Deserialize(expected);
+            Assert.IsNotNull(instance);
+            Assert.IsNotNull(instance.array);
+            Assert.IsNotNull(instance.Array);
+            Assert.IsNotNull(instance.array.quantity);
+            //Assert.IsNotNull(instance.array["quantity"]);
+        }
+
+        [Test]
+        public void Can_deserialize_simple_dynamic_object_collection()
+        {
+            const string expected = @"[
+            { ""quantity"":8902,""cost"":45.33,""value"":-0.01063 },
+            { ""quantity"":8903,""cost"":45.34,""value"":-0.01064 }
+            ]";
+
+            var collection = JsonParser.Deserialize(expected);
+
+            foreach(var item in collection)
+            {
+                Assert.IsNotNull(item);
+                Assert.IsNotNull(item.quantity);
+                Assert.IsNotNull(item.Quantity);
+                Assert.IsNotNull(item.cost);
+                Assert.IsNotNull(item.Cost);
+                Assert.IsNotNull(item.value);
+                Assert.IsNotNull(item.Value);
+            }
+        }
+#endif
     }
 }

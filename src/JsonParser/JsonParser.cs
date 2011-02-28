@@ -20,6 +20,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+#if NET40
+using System.Dynamic;
+#endif
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -51,12 +54,91 @@ namespace JsonParser
     /// </summary>
     public class InvalidJsonException : Exception
     {
-        public InvalidJsonException(string message)
-            : base(message)
+        public InvalidJsonException(string message) : base(message)
         {
 
         }
     }
+
+#if NET40
+    public interface IJson { }
+
+    public class JsonArray : DynamicObject, IEnumerable, IJson
+    {
+        private readonly List<IJson> _collection;
+
+        public JsonArray(ICollection<object> collection)
+        {
+            _collection = new List<IJson>(collection.Count);
+            foreach (var instance in collection.Cast<IDictionary<string, object>>())
+            {
+                _collection.Add(new JsonObject(instance));
+            }
+        }
+        
+        public IEnumerator GetEnumerator()
+        {
+            return _collection.GetEnumerator();
+        }
+    }
+
+    public class JsonObject : DynamicObject, IJson
+    {
+        private readonly IDictionary<string, object> _hash = new Dictionary<string, object>();
+
+        public JsonObject(IDictionary<string, object> hash)
+        {
+            _hash = hash;
+        }
+
+        public override bool TrySetMember(SetMemberBinder binder, object value)
+        {
+            var name = Underscored(binder.Name);
+            _hash[name] = value;
+            return _hash[name] == value;
+        }
+
+        public override bool TryGetMember(GetMemberBinder binder, out object result)
+        {
+            var name = Underscored(binder.Name);
+            return YieldMember(name, out result);
+        }
+
+        private bool YieldMember(string name, out object result)
+        {
+            if (_hash.ContainsKey(name))
+            {
+                result = _hash[name];
+
+                if(result is IDictionary<string, object>)
+                {
+                    result = new JsonObject((IDictionary<string, object>)result);
+                    return true;
+                }
+
+                return _hash[name] == result;
+            }
+            result = null;
+            return false;
+        }
+
+        private static string Underscored(IEnumerable<char> pascalCase)
+        {
+            var sb = new StringBuilder();
+            var i = 0;
+            foreach (var c in pascalCase)
+            {
+                if (char.IsUpper(c) && i > 0)
+                {
+                    sb.Append("_");
+                }
+                sb.Append(c);
+                i++;
+            }
+            return sb.ToString().ToLowerInvariant();
+        }
+    }
+#endif
 
     /// <summary>
     /// A parser for JSON.
@@ -98,6 +180,29 @@ namespace JsonParser
             DeserializeImpl(map, bag, instance);
             return instance;
         }
+
+#if NET40
+        public static dynamic Deserialize(string json)
+        {
+            JsonToken type;
+            var inner = FromJson(json, out type);
+            dynamic instance = null;
+
+            switch(type)
+            {
+                case JsonToken.LeftBrace:
+                    var @object = (IDictionary<string, object>) inner.Single().Value;
+                    instance = new JsonObject(@object);
+                    break;
+                case JsonToken.LeftBracket:
+                    var array = (IList<object>) inner.Single().Value;
+                    instance = new JsonArray(array);
+                    break;
+            }
+
+            return instance;
+        }
+#endif
 
         private static void DeserializeImpl<T>(IEnumerable<PropertyInfo> map,
                                                IDictionary<string, object> bag,
@@ -157,8 +262,27 @@ namespace JsonParser
 
         public static IDictionary<string, object> FromJson(string json)
         {
+            JsonToken type;
+            return FromJson(json, out type);
+        }
+
+        public static IDictionary<string, object> FromJson(string json, out JsonToken type)
+        {
             var data = json.ToCharArray();
             var index = 0;
+            
+            // Rewind index for first token
+            var token = NextToken(data, ref index);
+            switch (token)
+            {
+                case JsonToken.LeftBrace:   // Start Object
+                case JsonToken.LeftBracket: // Start Array
+                    index--;
+                    type = token;
+                    break;
+                default:
+                    throw new InvalidJsonException("JSON must begin with an object or array");
+            }
 
             return ParseObject(data, ref index);
         }
@@ -498,7 +622,8 @@ namespace JsonParser
         {
             var result = InitializeBag();
 
-            index++; // Skip first brace
+            index++; // Skip first token
+
             while (index < data.Count - 1)
             {
                 var token = NextToken(data, ref index);
@@ -527,7 +652,7 @@ namespace JsonParser
                         var @object = ParseObject(data, ref index);
                         if (@object != null)
                         {
-                            result.Add("object", @object);
+                            result.Add(string.Concat("object",result.Count), @object);
                         }
                         index++;
                         break;
@@ -535,7 +660,7 @@ namespace JsonParser
                         var @array = ParseArray(data, ref index);
                         if (@array != null)
                         {
-                            result.Add("array", @array);
+                            result.Add(string.Concat("array", result.Count), @array);
                         }
                         index++;
                         break;
