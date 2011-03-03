@@ -54,7 +54,8 @@ namespace JsonParser
     /// </summary>
     public class InvalidJsonException : Exception
     {
-        public InvalidJsonException(string message) : base(message)
+        public InvalidJsonException(string message)
+            : base(message)
         {
 
         }
@@ -75,7 +76,7 @@ namespace JsonParser
                 _collection.Add(new JsonObject(instance));
             }
         }
-        
+
         public IEnumerator GetEnumerator()
         {
             return _collection.GetEnumerator();
@@ -110,7 +111,7 @@ namespace JsonParser
             {
                 result = _hash[name];
 
-                if(result is IDictionary<string, object>)
+                if (result is IDictionary<string, object>)
                 {
                     result = new JsonObject((IDictionary<string, object>)result);
                     return true;
@@ -171,6 +172,16 @@ namespace JsonParser
             return ToJson(bag);
         }
 
+        public static object Deserialize(string json, Type type)
+        {
+            object instance;
+            var map = PrepareInstance(out instance, type);
+            var bag = FromJson(json);
+
+            DeserializeImpl(map, bag, instance);
+            return instance;
+        }
+
         public static T Deserialize<T>(string json)
         {
             T instance;
@@ -188,14 +199,14 @@ namespace JsonParser
             var inner = FromJson(json, out type);
             dynamic instance = null;
 
-            switch(type)
+            switch (type)
             {
                 case JsonToken.LeftBrace:
-                    var @object = (IDictionary<string, object>) inner.Single().Value;
+                    var @object = (IDictionary<string, object>)inner.Single().Value;
                     instance = new JsonObject(@object);
                     break;
                 case JsonToken.LeftBracket:
-                    var @array = (IList<object>) inner.Single().Value;
+                    var @array = (IList<object>)inner.Single().Value;
                     instance = new JsonArray(@array);
                     break;
             }
@@ -204,9 +215,21 @@ namespace JsonParser
         }
 #endif
 
+        private static void DeserializeImpl(IEnumerable<PropertyInfo> map,
+                                            IDictionary<string, object> bag,
+                                            object instance)
+        {
+            DeserializeType(map, bag, instance);
+        }
+
         private static void DeserializeImpl<T>(IEnumerable<PropertyInfo> map,
                                                IDictionary<string, object> bag,
                                                T instance)
+        {
+            DeserializeType(map, bag, instance);
+        }
+
+        private static void DeserializeType(IEnumerable<PropertyInfo> map, IDictionary<string, object> bag, object instance)
         {
             foreach (var info in map)
             {
@@ -280,7 +303,7 @@ namespace JsonParser
         {
             var data = json.ToCharArray();
             var index = 0;
-            
+
             // Rewind index for first token
             var token = NextToken(data, ref index);
             switch (token)
@@ -343,6 +366,15 @@ namespace JsonParser
             return new Dictionary<string, object>(
                 0, StringComparer.OrdinalIgnoreCase
                 );
+        }
+
+        internal static IEnumerable<PropertyInfo> PrepareInstance(out object instance, Type type)
+        {
+            instance = Activator.CreateInstance(type);
+
+            CacheReflection(type);
+
+            return _cache[type];
         }
 
         internal static IEnumerable<PropertyInfo> PrepareInstance<T>(out T instance)
@@ -662,7 +694,7 @@ namespace JsonParser
                         var @object = ParseObject(data, ref index);
                         if (@object != null)
                         {
-                            result.Add(string.Concat("object",result.Count), @object);
+                            result.Add(string.Concat("object", result.Count), @object);
                         }
                         index++;
                         break;
