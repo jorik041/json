@@ -195,8 +195,8 @@ namespace JsonParser
                     instance = new JsonObject(@object);
                     break;
                 case JsonToken.LeftBracket:
-                    var array = (IList<object>) inner.Single().Value;
-                    instance = new JsonArray(array);
+                    var @array = (IList<object>) inner.Single().Value;
+                    instance = new JsonArray(@array);
                     break;
             }
 
@@ -263,7 +263,17 @@ namespace JsonParser
         public static IDictionary<string, object> FromJson(string json)
         {
             JsonToken type;
-            return FromJson(json, out type);
+
+            var result = FromJson(json, out type);
+
+            switch (type)
+            {
+                case JsonToken.LeftBrace:
+                    var @object = (IDictionary<string, object>)result.Single().Value;
+                    return @object;
+            }
+
+            return result;
         }
 
         public static IDictionary<string, object> FromJson(string json, out JsonToken type)
