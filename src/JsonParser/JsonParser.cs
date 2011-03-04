@@ -596,6 +596,7 @@ namespace JsonParser
                             case 'n':
                             case 'r':
                             case 't':
+                                break;
                             case 'u': // Unicode literals
                                 if (index < data.Count - 5)
                                 {
@@ -759,8 +760,6 @@ namespace JsonParser
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-
-                index++;
             }
 
             return result;
