@@ -1,7 +1,23 @@
-JSON Parser
-Written by Daniel Crenna
-(http://danielcrenna.com)
- 
+# JSON
+## A public domain JSON parser written in C#
+
+    PM> Install-Package JSON
+
+### Introduction
+
+This JSON parser is designed for applications that need a fast parser for embedded serialization but don't need a full blown framework for working with JSON data. 
+
+### Features
+
+* Uses precompilation tags for maximum platform compatibility
+* In .NET 4.0, supports dynamic deserialization from a JSON schema to .NET object properties
+* Public domain; use this anywhere without restrictions, open standards should be free.
+
+### Usage
+
+
+
+### License
 This work is public domain.
 "The person who associated a work with this document has 
  dedicated the work to the Commons by waiving all of his
@@ -10,4 +26,4 @@ This work is public domain.
  had in the work, to the extent allowable by law."
   
 For more information, please visit:
-http://creativecommons.org/publicdomain/zero/1.0/
+(http://creativecommons.org/publicdomain/zero/1.0/)
