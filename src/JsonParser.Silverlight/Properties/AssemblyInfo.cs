@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("JSON Parser")]
@@ -12,4 +11,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: Guid("ea9301b8-29c6-4933-9109-cc7d5eebe9f5")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: InternalsVisibleTo("JsonParser.Tests")]

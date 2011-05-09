@@ -1,23 +1,4 @@
-﻿#region Public Domain License
-/*
- * JSON Parser
- * Written by Daniel Crenna
- * (http://danielcrenna.com)
- * 
- * This work is public domain.
- * 
- * "The person who associated a work with this document has 
- * dedicated the work to the Commons by waiving all of his
- * or her rights to the work worldwide under copyright law
- * and all related or neighboring legal rights he or she
- * had in the work, to the extent allowable by law."
- * 
- * For more information, please visit:
- * http://creativecommons.org/publicdomain/zero/1.0/
- */
-#endregion
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 #if NET40
