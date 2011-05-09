@@ -1,2 +1,2 @@
 copy LICENSE bin
-..\NuGet.exe pack specifications.nuspec -b bin -o bin
+..\NuGet.exe pack json.nuspec -b bin -o bin
