@@ -28,11 +28,11 @@ Normally, you define a strong type in your application and use the generic `Dese
 
     var json = @"{ ""name"" : ""Spot"" }";
     var spot = JsonParser.Deserialize<Dog>(json);
-    Console.WriteLine(spot.Name);    // Spot
+    Console.WriteLine(spot.Name);                              // Spot
 
 #### Dynamic deserialization
 
-Deserializing with a dynamic type system works much the same way, except that you can now access the properties of the underlying schema, in the original JSON case, or in typical .NET pascal case.
+Deserializing with a dynamic type system works much the same way, except that you can now access the properties of the underlying schema, in the original JSON's casing convention, or in typical .NET pascal case.
 
     var json = @"{ ""horn_length"": 4, ""magic_powers"" : { ""cone_of_coneyness"" : true } }";
     var unicorn = JsonParser.Deserialize(json);
