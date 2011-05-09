@@ -1,5 +1,5 @@
 # JSON
-## A public domain JSON parser written in C#
+## A public domain JSON parser for .NET
 
     PM> Install-Package JSON
 
