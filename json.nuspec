@@ -6,7 +6,7 @@
 		<authors>Daniel Crenna</authors>
 		<owners>Daniel Crenna</owners>
 		<description>A JSON parser in C#, supporting dynamic deserialization in .NET 4.0</description>
-		<summary>A JSON parser in C#, supporting dynamic deserialization in .NET 4.0</summary>
+		<summary>A JSON parser in C#, supporting dynamic deserialization in .NET 4.0. A JSON parser in C#, supporting dynamic deserialization in .NET 4.0. Runs on .NET 3.5, .NET 4.0, Silverlight, and Windows Phone.</summary>
 		<language>en-US</language>
 		<projectUrl>http://github.com/danielcrenna/json</projectUrl>
 		<licenseUrl>https://github.com/danielcrenna/json/blob/master/LICENSE</licenseUrl>
