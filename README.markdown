@@ -19,7 +19,7 @@ This JSON parser is designed for applications that need a fast parser for embedd
 
 Serialization can occur at the type and property levels. At the type level, you use `Serialize` and `Deserialize` methods as expected. With property level serialization, you use `FromJson` and `ToJson` to convert JSON input to and from a hash. This is useful when you want to apply custom logic without requiring strong types.
 
-Normally, you define a strong type in your application and use the generic `Deserialize' method to hydrate an instance of your object with a provided valid JSON input.
+Normally, you define a strong type in your application and use the generic `Deserialize` method to hydrate an instance of your object with a provided valid JSON input.
 
     public class Dog
     {
