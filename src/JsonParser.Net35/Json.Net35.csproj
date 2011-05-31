@@ -8,8 +8,8 @@
     <ProjectGuid>{5EDEC548-4878-4888-8172-CF8037974313}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JsonParser.Net35</RootNamespace>
-    <AssemblyName>JsonParser.Net35</AssemblyName>
+    <RootNamespace>Json</RootNamespace>
+    <AssemblyName>Json.Net35</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

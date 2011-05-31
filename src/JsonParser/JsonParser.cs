@@ -9,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace JsonParser
+namespace Json
 {
     /// <summary>
     /// Possible JSON tokens in parsed input.

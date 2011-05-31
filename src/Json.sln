@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParser.Tests", "JsonParser.Tests\JsonParser.Tests.csproj", "{278BCB67-97BF-4836-935D-4083CDC92F8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Json.Tests", "JsonParser.Tests\Json.Tests.csproj", "{278BCB67-97BF-4836-935D-4083CDC92F8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParser", "JsonParser\JsonParser.csproj", "{B251D410-AEF1-4B9A-AA4C-30AE6C587F0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Json", "JsonParser\Json.csproj", "{B251D410-AEF1-4B9A-AA4C-30AE6C587F0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParser.Silverlight3", "JsonParser.Silverlight\JsonParser.Silverlight3.csproj", "{6B6B30A3-571D-47F3-947E-17A984BD3F1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Json.Silverlight3", "JsonParser.Silverlight\Json.Silverlight3.csproj", "{6B6B30A3-571D-47F3-947E-17A984BD3F1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParser.WindowsPhone", "JsonParser.WindowsPhone\JsonParser.WindowsPhone.csproj", "{D08974FB-9902-413D-BD09-B5B3A5C95328}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Json.WindowsPhone", "JsonParser.WindowsPhone\Json.WindowsPhone.csproj", "{D08974FB-9902-413D-BD09-B5B3A5C95328}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DAECA0A0-AA5E-4E06-AB2F-443C6BEEFBEA}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,9 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.markdown = ..\README.markdown
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParser.Silverlight4", "JsonParser.Silverlight4\JsonParser.Silverlight4.csproj", "{C64B2D5C-8AD6-4F67-9EF7-E597DC68B2E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Json.Silverlight4", "JsonParser.Silverlight4\Json.Silverlight4.csproj", "{C64B2D5C-8AD6-4F67-9EF7-E597DC68B2E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonParser.Net35", "JsonParser.Net35\JsonParser.Net35.csproj", "{5EDEC548-4878-4888-8172-CF8037974313}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Json.Net35", "JsonParser.Net35\Json.Net35.csproj", "{5EDEC548-4878-4888-8172-CF8037974313}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Targets", "Targets", "{F9FB2C7F-3D7E-443E-9A59-EBCBF4F0E548}"
 EndProject
@@ -57,9 +57,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{D08974FB-9902-413D-BD09-B5B3A5C95328} = {F9FB2C7F-3D7E-443E-9A59-EBCBF4F0E548}
+		{C64B2D5C-8AD6-4F67-9EF7-E597DC68B2E1} = {F9FB2C7F-3D7E-443E-9A59-EBCBF4F0E548}
 		{5EDEC548-4878-4888-8172-CF8037974313} = {F9FB2C7F-3D7E-443E-9A59-EBCBF4F0E548}
 		{6B6B30A3-571D-47F3-947E-17A984BD3F1A} = {F9FB2C7F-3D7E-443E-9A59-EBCBF4F0E548}
-		{C64B2D5C-8AD6-4F67-9EF7-E597DC68B2E1} = {F9FB2C7F-3D7E-443E-9A59-EBCBF4F0E548}
-		{D08974FB-9902-413D-BD09-B5B3A5C95328} = {F9FB2C7F-3D7E-443E-9A59-EBCBF4F0E548}
 	EndGlobalSection
 EndGlobal

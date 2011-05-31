@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using NUnit.Framework;
 
-namespace JsonParser.Tests
+namespace Json.Tests
 {
     [TestFixture]
     public class JsonParserTests
@@ -217,7 +217,6 @@ namespace JsonParser.Tests
             Assert.IsNotNull(instance.array);
             Assert.IsNotNull(instance.Array);
             Assert.IsNotNull(instance.array.quantity);
-            //Assert.IsNotNull(instance.array["quantity"]);
         }
 
         [Test]

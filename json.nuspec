@@ -2,7 +2,7 @@
 <package>
 	<metadata>
 		<id>JSON</id>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 		<authors>Daniel Crenna</authors>
 		<owners>Daniel Crenna</owners>
 		<description>A JSON parser in C#, supporting dynamic deserialization in .NET 4.0</description>
