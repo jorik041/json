@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using NUnit.Framework;
 
@@ -89,6 +90,15 @@ namespace Json.Tests
             var actual = JsonParser.Serialize(dog);
             Assert.AreEqual(expected, actual);
         }
+
+		[Test]
+		public void Can_serialize_with_string_with_quotas()
+		{
+			const string expected = @"{""name"":""Ba\""r""}";
+			var dog = new Dog { Name = "Ba\"r" };			
+			var actual = JsonParser.Serialize(dog);
+			Assert.AreEqual(expected, actual);
+		}
 
         [Test]
         public void Can_serialize_with_numbers()
