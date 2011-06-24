@@ -87,7 +87,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JsonParser\JsonParser.csproj">
+    <ProjectReference Include="..\JsonParser\Json.csproj">
       <Project>{B251D410-AEF1-4B9A-AA4C-30AE6C587F0E}</Project>
       <Name>JsonParser</Name>
     </ProjectReference>

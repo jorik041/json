@@ -493,10 +493,13 @@ namespace Json
         {
             sb.Append("\"");
             var symbols = item.ToString().ToCharArray();
-            foreach (var unicode in symbols.Select(symbol => (int)symbol).Select(GetUnicode))
+            
+            var unicodes = symbols.Select(symbol => (int)symbol).Select(GetUnicode);
+            foreach (var unicode in unicodes)
             {
                 sb.Append(unicode);
             }
+
             sb.Append("\"");
         }
 
@@ -506,7 +509,8 @@ namespace Json
             var basicLatin = code >= 32 && code <= 126;
             if (basicLatin)
             {
-                return new string((char)code, 1);
+                var value = (char)code;
+                return value == '"' ? @"\""" : new string(value, 1);
             }
 
             var unicode = BaseConvert(code, _base16, 4);
