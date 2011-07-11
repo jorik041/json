@@ -21,20 +21,25 @@ Serialization can occur at the type and property levels. At the type level, you 
 
 Normally, you define a strong type in your application and use the generic `Deserialize` method to hydrate an instance of your object with a provided valid JSON input.
 
-    public class Dog
-    {
-        public string Name { get; set; }
-    }
+```csharp
+public class Dog
+{
+    public string Name { get; set; }
+}
 
-    var json = @"{ ""name"" : ""Spot"" }";
-    var spot = JsonParser.Deserialize<Dog>(json);
-    Console.WriteLine(spot.Name);                              // Spot
+var json = @"{ ""name"" : ""Spot"" }";
+var spot = JsonParser.Deserialize<Dog>(json);
+Console.WriteLine(spot.Name);                              // Spot
+```
 
 #### Dynamic deserialization
 
 Deserializing with a dynamic type system works much the same way, except that you can now access the properties of the underlying schema, in the original JSON's casing convention, or in typical .NET pascal case.
 
-    var json = @"{ ""horn_length"": 4, ""magic_powers"" : { ""cone_of_coneyness"" : true } }";
-    var unicorn = JsonParser.Deserialize(json);
-    Console.WriteLine(unicorn.HornLength);                     // 4
-    Console.WriteLine(unicorn.magic_powers.ConeOfConeyness);   // true
+```csharp
+var json = @"{ ""horn_length"": 4, ""magic_powers"" : { ""cone_of_coneyness"" : true } }";
+var unicorn = JsonParser.Deserialize(json);
+
+Console.WriteLine(unicorn.HornLength);                     // 4
+Console.WriteLine(unicorn.magic_powers.ConeOfConeyness);   // true
+```
